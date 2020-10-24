@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import ShelterView, NearbyShelters
+
 urlpatterns = [
     path('view/', ShelterView.as_view()),
     path('add/', ShelterView.as_view()),

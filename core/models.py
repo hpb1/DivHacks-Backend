@@ -30,3 +30,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
+
+class TreeModel(models.Model):
+    name = models.CharField(max_length=255)
+    species = models.CharField(max_length=255)
+    latitude = models.TextField()
+    longitude = models.TextField()
