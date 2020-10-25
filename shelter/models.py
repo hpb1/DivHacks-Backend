@@ -8,3 +8,6 @@ class ShelterModel(models.Model):
     address = models.TextField()
     latitude = models.TextField()
     longitude = models.TextField()
+
+    def __str__(self):
+        return self.name

@@ -5,6 +5,9 @@ from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from .serializers import TreeSerializer
 from .models import TreeModel
+import sys
+sys.path.append("..") # Adds higher directory to python modules path.
+from calculator import cfp_output
 # Create your views here.
 
 class TreeView(APIView):
@@ -41,4 +44,16 @@ class TreeView(APIView):
                 'Tree does not exist.'
             },status=404)
         
-        
+class CarbonFootprintView(APIView):
+    permission_class = [permissions.IsAuthenticated]
+    parser_classes = [JSONParser]
+
+    def post(self,request):
+        output = cfp_output(request.data['food'])
+        if not output:
+            return Response({
+                "Enter a valid food item."
+            }, status=400)  
+        else:
+            return Response(output, status=200)
+              

@@ -36,3 +36,6 @@ class TreeModel(models.Model):
     species = models.CharField(max_length=255)
     latitude = models.TextField()
     longitude = models.TextField()
+
+    def __str__(self):
+        return self.name
